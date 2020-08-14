@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
 
   preload() {
     // load images
-    this.load.image('sky2', 'assets/game/sky.png');
+    this.load.image('sky2', '../src/assets/game/sky.png');
   }
 
   create() {
