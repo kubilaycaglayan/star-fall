@@ -9,7 +9,7 @@ export default class TitleScene extends Phaser.Scene {
 
   preload() {
     // load images
-    this.load.image('sky2', '../src/assets/game/sky.png');
+    this.load.image('skyTwo', 'assets/game/sky.png');
   }
 
   create() {
@@ -35,7 +35,7 @@ export default class TitleScene extends Phaser.Scene {
       }
     };
 
-    this.add.image(400, 300, 'sky2');
+    this.add.image(400, 300, 'skyTwo');
     this.nameField = this.add.text(310, 30, `Welcome ${getName()}!`, { fill: '#0f0' });
 
     // Change Name
