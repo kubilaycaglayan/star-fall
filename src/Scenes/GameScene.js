@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import scores from '../Scores/scoreBoard'
+import scores from '../Scores/scoreBoard';
 import { Ground } from '../Objects/Ground';
 import { Star } from '../Objects/Star';
 import { Creator } from '../GameLogic/Creator';
@@ -26,11 +26,11 @@ export default class GameScene extends Phaser.Scene {
     this.physics.add.staticGroup({
       key: 'spikes',
       repeat: 11,
-      setXY: { x: 12, y: 600, stepX: 100 }
+      setXY: { x: 12, y: 600, stepX: 100 },
     });
-    let platforms = this.physics.add.staticGroup();
-    let bottomGroup = this.physics.add.staticGroup();
-    bottomGroup.create(400, 630, 'bottom').setScale(2).refreshBody()
+    const platforms = this.physics.add.staticGroup();
+    const bottomGroup = this.physics.add.staticGroup();
+    bottomGroup.create(400, 630, 'bottom').setScale(2).refreshBody();
 
     this.player = this.physics.add.sprite(400, 250, 'dude');
     this.player.consecutiveJumps = 2;
@@ -53,5 +53,26 @@ export default class GameScene extends Phaser.Scene {
 
     this.physics.add.collider(this.player, platforms);
     this.physics.add.collider(stars, platforms);
+
+    const clearTimers = () => {
+      this.creator.clearTimers();
+      this.star.stop();
+      this.ground.stop();
+    };
+
+    const finish = () => {
+      this.physics.world.removeCollider(this.overlapTrigger);
+      this.gameOver = true;
+      this.add.text(300, 250, 'Game Over', { fontSize: '45px', fill: '#666666' });
+      this.scene.pause();
+      this.upKey.removeAllListeners();
+      clearTimers();
+      scores.addNewScore(localStorage.getItem('name').slice(0, 15), this.points.get());
+      setTimeout(() => {
+        this.scene.stop('Game');
+        this.scene.start('Title');
+      }, 1500);
+    };
+    this.overlapTrigger = this.physics.add.overlap(this.player, bottomGroup, finish, null, this);
   }
 }
