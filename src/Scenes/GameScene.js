@@ -111,5 +111,20 @@ export default class GameScene extends Phaser.Scene {
       frameRate: 10,
       repeat: -1,
     });
+
+    this.superJumpText = this.add.text(550, 55, 'Super Jump Available', { fontSize: '12px', fill: '#ff0000' });
+
+    this.jump = () => {
+      if (this.player.body.touching.down || this.player.consecutiveJumps === 1) {
+        this.player.setVelocityY(-380);
+        this.player.consecutiveJumps -= 1;
+        if (this.player.consecutiveJumps === 0) {
+          this.superJumpText.text = '';
+        }
+      }
+    };
+
+    this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    this.upKey.on('down', this.jump, this);
   }
 }
