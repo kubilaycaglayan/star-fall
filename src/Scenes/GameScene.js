@@ -74,5 +74,22 @@ export default class GameScene extends Phaser.Scene {
       }, 1500);
     };
     this.overlapTrigger = this.physics.add.overlap(this.player, bottomGroup, finish, null, this);
+
+    this.scoreText = this.add.text(550, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    this.levelText = this.add.text(16, 16, 'Level: 1', { fontSize: '32px', fill: '#000' });
+    this.gameLevel = 1;
+
+    this.collectStar = (_player, star) => {
+      star.disableBody(true, true);
+      this.points.collectStar();
+      this.scoreText.text = this.points.getScoreText();
+      [this.levelText.text] = this.points.getLevelText();
+      if (this.points.getLevelText()[1] !== this.gameLevel) {
+        [this.levelText.text, this.gameLevel] = this.points.getLevelText();
+        this.creator.levelUp();
+      }
+      this.stMusic.play();
+    };
+    this.physics.add.overlap(this.player, stars, this.collectStar, null, this);
   }
 }
