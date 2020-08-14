@@ -20,6 +20,38 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(400, 300, 'logo');
+    this.gameOver = false;
+    this.add.image(400, 300, 'sky');
+
+    this.physics.add.staticGroup({
+      key: 'spikes',
+      repeat: 11,
+      setXY: { x: 12, y: 600, stepX: 100 }
+    });
+    let platforms = this.physics.add.staticGroup();
+    let bottomGroup = this.physics.add.staticGroup();
+    bottomGroup.create(400, 630, 'bottom').setScale(2).refreshBody()
+
+    this.player = this.physics.add.sprite(400, 250, 'dude');
+    this.player.consecutiveJumps = 2;
+    this.player.setCollideWorldBounds(true);
+    this.player.body.checkCollision.up = false;
+    this.player.body.checkCollision.left = false;
+    this.player.body.checkCollision.right = false;
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+    const stars = this.physics.add.group();
+
+    this.ground = Ground();
+    this.star = Star();
+    this.creator = Creator();
+    this.points = Points();
+
+    this.stMusic = this.sound.add('starMusic', { volume: 0.5, loop: false });
+
+    this.creator.doIt(this.ground, this.star, platforms, stars);
+
+    this.physics.add.collider(this.player, platforms);
+    this.physics.add.collider(stars, platforms);
   }
 }
