@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 const Star = () => {
   const timeOuts = [];
   const removeAfter = (group, removeCountDown, ...children) => {
@@ -20,6 +18,7 @@ const Star = () => {
 
   const bounce = stars => {
     stars.children.iterate((child) => {
+      // eslint-disable-next-line no-undef
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
     });
   };
