@@ -127,4 +127,37 @@ export default class GameScene extends Phaser.Scene {
     this.upKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.upKey.on('down', this.jump, this);
   }
+
+  update() {
+    if (this.gameOver) {
+      return;
+    }
+    if (this.cursors.left.isDown) {
+      this.player.setVelocityX(-160);
+
+      this.player.anims.play('left', true);
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(160);
+
+      this.player.anims.play('right', true);
+    } else {
+      this.player.setVelocityX(0);
+
+      this.player.anims.play('turn');
+    }
+
+    if (this.player.body.touching.down) {
+      this.player.consecutiveJumps = 2;
+      this.superJumpText.text = 'Super Jump Available';
+    } else if (this.player.consecutiveJumps !== 1) {
+      this.superJumpText.text = '';
+    }
+
+    if (this.cursors.down.isDown && this.player.body.touching.down) {
+      this.player.body.checkCollision.down = false;
+      setTimeout(() => {
+        this.player.body.checkCollision.down = true;
+      }, 200);
+    }
+  }
 }
