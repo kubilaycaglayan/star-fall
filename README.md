@@ -41,7 +41,7 @@
 ### 🖥️ Running In The Local Environment
 
 ##### To run in the local environment first clone the repository(in Terminal):
-- Clone the repository: `git https://github.com/kubilaycaglayan/star-fall.git`
+- Clone the repository: `git clone https://github.com/kubilaycaglayan/star-fall.git`
 - Enter the project directory: `cd star-fall`
 - Run npm to install the dependencies `npm install`
 - Start the game `npm run start`
