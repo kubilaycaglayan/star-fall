@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "start": "webpack-dev-server --config webpack/base.js --open",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/photonstorm/phaser3-project-template#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "@babel/preset-env": "^7.7.1",
     "babel-loader": "^8.0.6",
     "eslint": "^6.8.0",
