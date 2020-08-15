@@ -1,6 +1,6 @@
 # 🌠 Star Fall 🌠
 
-> Collect as many stars. Race against time. Everything moving faster and faster as your score goes up.
+> Collect as many stars. Race against time. Everything moving faster and faster as your level goes up.
 > Try to survive and collect stars as much as possible to bring your name into the high scores list.
 
 - [Jump To: How To Use](#usage)
@@ -9,6 +9,10 @@
 - [Jump To: Tests](#tests)
 - [Jump To: Future Features](#futurefeatures)
 - [Jump To: Contributing](#contributing)
+
+### Video Presentation
+
+🎥 [Video Presentation](https://www.loom.com/share/b0090ccdb7d64c57afc37056c628f5c8)
 
 ## Live Demo
 
@@ -30,7 +34,6 @@
 
 - A modern browser, up to date.
 - Node.js, if you are going to use it in the local environment.
-- A text editor.
 
 <p id='usage'></p>
 
@@ -107,13 +110,24 @@
 >I don't like enemies, for that reason I wanted to make the game race against the time. To achieve this, I got some inspiration from an old game 'Icy Tower'. In that game the objective was to go as high as possible. Since I want to draw myself a frame, I kept my camera static. Which means the perspective is not changing. To make the game has an objective I put limitations like disappearing platforms and the game is ending if you fall down.
 
 #### Level Design
->Also created a leveling system in which the time cycle of the platform moves faster as the level goes high. And levels depends on the stars collected. In every 100 points the game levels up, until 20. Which is a very fastly changing environment.
+>Also created a leveling system in which the time cycle of the platform moves faster as the level goes high. And level depends on the stars collected. For every 100 points the game levels up, until 20. Which is a very fastly changing environment.
 
 #### Assets Needed
-> To achieve these objectives I collected the assets like the ground, background, star, a sprite sheet and I selected one of my improvisational guitar recordings as background music haha sorry for that. 😊
+> To achieve these objectives I have collected the assets like the ground, background, star, a sprite sheet and I selected one of my improvisational guitar recordings as background music haha sorry for that. 😊
 
 #### Technical
 > To understand Phaser better and to overcome technical blockers quickly, I visited Phasers website and skim documentation.
+
+#### Development Stage
+> Once I have my final decisions about the design I want to create I started to develop it.
+
+> I have started with the randomizer methods. Which is taking coordinates of the current ground and spits out a random coordinate in the frame, possible to jump & land on it.
+
+> Then I created the code blocks that are responsible from the ground and star creation. Also, anytime an object created in these two factory functions, they ar eimmediately attached with a countdown which will destroy them soon. This timer mechanism also attached with the level. As the level goes up the destroy times getting shorter.
+
+> I used a template for my character, to animate it and move it. I wanted to add 2 more mechanics to the template which are "super jump" and "pass-through" explained well above.
+
+> Every player has a default name 'Guest Player". Since I like convention, you don't have to do anything to submit your score. You only can change your nick name if you want. After every game, the responsible code block automatically submits the score. You can check high scores from the main menu by clicking scores.
 
  <p id='tests'></p>
 
@@ -130,6 +144,7 @@
 
 ###  Future Features
 
+- Mobile compatibility.
 - Platforms getting shorter as the level goes higher.
 - Different themes.
 - Better sound effect for collecting stars.
