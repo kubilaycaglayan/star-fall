@@ -22,7 +22,10 @@ export default class HighScoresScene extends Phaser.Scene {
       this.add.text(100, 550, `Played ${playerCount} times...`, { fill: '#0d0' });
     };
 
-    const sortResults = scores => scores.sort((a, b) => (a.score > b.score ? -1 : 1)).slice(0, 10);
+    const filterNames = result => result.user !== 'veronica' && result.user !== 'notveronica';
+
+    const sortResults = scores => scores.sort((a, b) => (a.score > b.score ? -1 : 1))
+      .filter(filterNames).slice(0, 10);
 
     scores.getScores()
       .then(
