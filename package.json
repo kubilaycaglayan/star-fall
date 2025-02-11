@@ -39,7 +39,7 @@
     "html-webpack-plugin": "^5.5.0",
     "phaser": "^3.20.1",
     "regenerator-runtime": "^0.13.7",
-    "terser-webpack-plugin": "^2.2.1",
+    "terser-webpack-plugin": "^5.3.11",
     "webpack": "^5.75.0",
     "webpack-merge": "^4.2.2"
   }
